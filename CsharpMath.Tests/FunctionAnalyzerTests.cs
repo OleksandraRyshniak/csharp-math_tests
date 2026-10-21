@@ -30,5 +30,21 @@ namespace CsharpMath.Tests
             Assert.Equal(3, result.ZeroPoints[1].X, 3);
         }
 
+
+        [Theory]
+        [InlineData(-2, 12)]
+        [InlineData(0, 0)]
+        [InlineData(2, 12)]
+        public void CubicFunction_Derivative_IsCorrect(
+            double x, double expected)
+        {
+            var result = _analyzer.Compute("x^3");
+
+            double actual = result.EvaluateDerivative(x);
+
+            Assert.Equal(expected, actual, 3);
+        }
+
+
     }
 }

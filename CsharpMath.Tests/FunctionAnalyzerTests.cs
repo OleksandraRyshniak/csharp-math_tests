@@ -46,5 +46,19 @@ namespace CsharpMath.Tests
         }
 
 
+        [Theory]
+        [InlineData(-5, 3)]
+        [InlineData(0, 3)]
+        [InlineData(5, 3)]
+        public void LinearFunction_Derivative_IsCorrect(
+            double x, double expected)
+        {
+            var result = _analyzer.Compute("3*x + 2");
+
+            double actual = result.EvaluateDerivative(x);
+
+            Assert.Equal(expected, actual, 3);
+        }
+
     }
 }

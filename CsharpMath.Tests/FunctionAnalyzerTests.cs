@@ -149,5 +149,33 @@ namespace CsharpMath.Tests
         }
 
 
+        [Theory]
+        [InlineData(-4, -8)]
+        [InlineData(-1, -2)]
+        [InlineData(0, 0)]
+        [InlineData(1, 2)]
+        [InlineData(4, 8)]
+        public void QuadraticFunction_Derivative_AtDifferentPoints(
+            double x, double expected)
+        {
+            var result = _analyzer.Compute("x^2");
+
+            Assert.Equal(expected, result.EvaluateDerivative(x), 3);
+        }
+
+        [Theory]
+        [InlineData(-2, 12)]
+        [InlineData(-1, 3)]
+        [InlineData(0, 0)]
+        [InlineData(1, 3)]
+        [InlineData(3, 27)]
+        public void CubicFunction_Derivative_AtDifferentPoints(
+            double x, double expected)
+        {
+            var result = _analyzer.Compute("x^3");
+
+            Assert.Equal(expected, result.EvaluateDerivative(x), 3);
+        }
+
     }
 }

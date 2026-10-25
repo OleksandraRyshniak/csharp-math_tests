@@ -77,5 +77,35 @@ namespace CsharpMath.Tests
             Assert.Equal(0, result.ZeroPoints[0].X, 3);
         }
 
+        [Fact]
+        public void ConstantFunction_Derivative_IsZero()
+        {
+            var result = _analyzer.Compute("5");
+
+            Assert.Equal(0, result.EvaluateDerivative(2), 3);
+        }
+
+        [Fact]
+        public void LinearFunction_HasOneRoot()
+        {
+            var result = _analyzer.Compute("2*x - 6");
+
+            Assert.Single(result.ZeroPoints);
+            Assert.Equal(3, result.ZeroPoints[0].X, 3);
+        }
+
+        [Theory]
+        [InlineData(-3)]
+        [InlineData(0)]
+        [InlineData(4)]
+        public void LinearFunction_Derivative_IsTwo(double x)
+        {
+            var result = _analyzer.Compute("2*x + 5");
+
+            Assert.Equal(2, result.EvaluateDerivative(x), 3);
+        }
+
+
+
     }
 }

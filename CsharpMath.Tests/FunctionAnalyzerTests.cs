@@ -106,6 +106,31 @@ namespace CsharpMath.Tests
         }
 
 
+        [Fact]
+        public void NegativeQuadraticFunction_Derivative_IsCorrect()
+        {
+            var result = _analyzer.Compute("-x^2");
+
+            Assert.Equal(-4, result.EvaluateDerivative(2), 3);
+        }
+
+        [Fact]
+        public void ConstantFunction_HasNoRoots()
+        {
+            var result = _analyzer.Compute("5");
+
+            Assert.Empty(result.ZeroPoints);
+        }
+
+        [Fact]
+        public void ZeroFunction_Derivative_IsZero()
+        {
+            var result = _analyzer.Compute("0");
+
+            Assert.Equal(0, result.EvaluateDerivative(3), 3);
+        }
+
+
 
     }
 }

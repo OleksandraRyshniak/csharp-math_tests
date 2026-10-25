@@ -60,5 +60,14 @@ namespace CsharpMath.Tests
             Assert.Equal(expected, actual, 3);
         }
 
+
+        [Fact]
+        public void QuadraticFunction_WithoutRealRoots_ReturnsEmptyList()
+        {
+            var result = _analyzer.Compute("x^2 + 1");
+
+            Assert.Empty(result.ZeroPoints);
+        }
+
     }
 }

@@ -131,6 +131,23 @@ namespace CsharpMath.Tests
         }
 
 
+        [Fact]
+        public void CubicFunction_HasOneRoot()
+        {
+            var result = _analyzer.Compute("x^3 - 8");
+
+            Assert.Single(result.ZeroPoints);
+            Assert.Equal(2, result.ZeroPoints[0].X, 3);
+        }
+
+        [Fact]
+        public void NegativeLinearFunction_Derivative_IsCorrect()
+        {
+            var result = _analyzer.Compute("-3*x + 7");
+
+            Assert.Equal(-3, result.EvaluateDerivative(4), 3);
+        }
+
 
     }
 }
